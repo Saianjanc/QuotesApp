@@ -1,3 +1,4 @@
+import { Card } from 'react-bootstrap'
 import sun from './assets/sun.png'
 import moon from './assets/moon.png'
 import c1 from './assets/c1.png'
@@ -6,6 +7,7 @@ import c4 from './assets/c4.png'
 import c5 from './assets/c5.png'
 import c6 from './assets/c6.png'
 import s from './assets/smStar.svg'
+import { Switch } from 'antd'
 import { useState } from 'react'
 
 
@@ -47,6 +49,18 @@ function App(){
         <img src={s} alt='Star' width="30px" className='absolute top-20 right-[10px] animate-[star_7s_ease-in-out_infinite_alternate] drop-shadow-[0px_0px_8px_rgba(255,242,0,1)]'/>
         <img src={s} alt='Star' width="50px" className='absolute top-40 left-[200px] animate-[star_8s_ease-in-out_infinite_alternate] drop-shadow-[0px_0px_8px_rgba(255,242,0,1)]'/>
         </div>}
+        <div className='h-full flex justify-center'>
+        <Card className='absolute top-[250px] w-[40%] h-[200px] bg-black text-white rounded p-5 bg-opacity-30'>
+        <Card.Body className='backdrop-blur'>
+            <Card.Title className='text-3xl pb-5 flex justify-between'>{mode?"Good Morning":"Good Night"}<Switch onClick={()=>setMode(!mode)}/></Card.Title>
+            <Card.Text className='text-2xl'>
+            Test Quote
+            </Card.Text>
+            <br/>
+            <div className='flex justify-end text-xl'>-Quote.Author</div>
+          </Card.Body>
+        </Card>
+        </div>
         </div>
     )
 }
