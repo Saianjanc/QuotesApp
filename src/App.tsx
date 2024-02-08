@@ -8,8 +8,8 @@ import c5 from './assets/c5.png'
 import c6 from './assets/c6.png'
 import s from './assets/smStar.svg'
 import { Switch } from 'antd'
-import { useState } from 'react'
-
+import { useEffect, useState } from 'react'
+import en from './languages/en.json'
 
 interface IQuote{
   author:string,
@@ -18,6 +18,12 @@ interface IQuote{
 
 function App(){
   const [mode,setMode] = useState(false)
+  const [quote,setQuote] = useState<IQuote>()
+  const getQuote = () => {
+    const randomNum = Math.floor(Math.random()* ((en.length-1) - 0 + 1)) +0;
+    setQuote(en[randomNum])
+  }
+  useEffect(()=>{getQuote()},[])
     return(
         <div>
         {mode?<div className="h-[100vh] bg-gradient-to-t from-[#2980b9] to-[#6dd5fa]">
@@ -54,10 +60,10 @@ function App(){
         <Card.Body className='backdrop-blur'>
             <Card.Title className='text-3xl pb-5 flex justify-between'>{mode?"Good Morning":"Good Night"}<Switch onClick={()=>setMode(!mode)}/></Card.Title>
             <Card.Text className='text-2xl'>
-            Test Quote
+              {quote?.text}
             </Card.Text>
             <br/>
-            <div className='flex justify-end text-xl'>-Quote.Author</div>
+            <div className='flex justify-end text-xl'>-{quote?.author}</div>
           </Card.Body>
         </Card>
         </div>
